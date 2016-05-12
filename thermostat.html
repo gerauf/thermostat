@@ -8,15 +8,21 @@
     <title>Thermostat</title>
   </head>
   <body>
-    Temp: <h1 id="temp" class=""></h1>
+    Temp: <h1 id="temp"></h1>
 
     <button id="temp-up">+</button>
     <button id="temp-down">-</button>
     <button id="temp-reset">Reset</button>
     <p>
-      Power Saving Mode is <span id="psm-mode"></span>
       <button id="psm-toggle">PSM Toggle</button>
     </p>
+
+    <p>Enter city name
+      <input id='city-name' type="text">
+      <button id='get-city-temp'>Find</button>
+    </p>
+
+    <span id="city-and-temp"></span>
 
     <script src="src/Thermostat.js"></script>
     <script src="src/Interface.js"></script>
