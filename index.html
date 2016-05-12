@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Thermostat</title>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 id=getTemperature></h1>
+      <p>
+        <button id=thermostat-up>+</button>
+        <button id=thermostat-down>-</button>
+        <button id=thermostat-reset>reset</button>
+        power saving mode is on:<p id=powerSaing-isOn></P>
+        <button id=powerSaving-turnOn>Power saving on</button>
+        <button id=powerSaving-turnOff>Power saving off</button>
+      </p>
+    </section>
+    <script type="text/javascript" src="jasmine/src/thermostat.js"></script>
+    <script type="text/javascript" src="jasmine/src/display.js"></script>
+    <script type="text/javascript" src="jasmine/src/powerSaving.js"></script>
+  </body>
+</html>
