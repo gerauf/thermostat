@@ -8,7 +8,7 @@ describe('Thermostat', function(){
   });
 
   it('should start at 20 degrees', function() {
-    expect(thermostat.getTemperature()).toEqual(20);
+    expect(thermostat.getTemperature()).toEqual(thermostat.DEFAULT_TEMP);
   });
 
   it('should be able to increase the temperature', function() {
@@ -22,8 +22,30 @@ describe('Thermostat', function(){
   });
 
   it('should have a minimum temperature of 10', function() {
-    for(var temp = 20; temp > thermostat.MIN_TEMP; temp--){thermostat.down()};
+    for(var temp = thermostat.DEFAULT_TEMP; temp > thermostat.MIN_TEMP; temp--){
+      thermostat.down()
+    };
     thermostat.down();
     expect(thermostat.getTemperature()).toEqual(thermostat.MIN_TEMP);
   });
+
+  it('should be able to reset the temperature', function() {
+    thermostat.up();
+    thermostat.reset();
+    expect(thermostat.getTemperature()).toEqual(thermostat.DEFAULT_TEMP);
+  });
+
+  it('should be able to turn power saving mode on', function() {
+    thermostat.turnOnPSM();
+    expect(thermostat.isPSMOn()).toBe(true);
+  });
+
+  it('should be able to turn power saving mode off', function() {
+    thermostat.turnOffPSM();
+    expect(thermostat.isPSMOn()).toBe(false);
+  });
+
+  // describe('When Power Saving Mode', function(){
+  //   it('')
+  // });
 });
