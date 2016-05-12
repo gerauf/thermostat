@@ -36,5 +36,5 @@ $( document ).ready(function(){
 
   function updateDisplayMode() {
     $('#temp').attr('class', thermostat.getMode())
-  }
+  };
 });
