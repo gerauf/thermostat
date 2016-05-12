@@ -44,6 +44,19 @@ describe('Thermostat', function(){
     expect(thermostat.isPSMOn()).toBe(false);
   });
 
+  describe('#powerSavingToggle', function () {
+    it('should turn off when on', function () {
+      thermostat.psmToggle();
+      expect(thermostat.isPSMOn()).toBe(false);
+    });
+
+    it('should turn on when off', function () {
+      thermostat.psmToggle();
+      thermostat.psmToggle();
+      expect(thermostat.isPSMOn()).toBe(true);
+    });
+  });
+
   describe('When Power Saving Mode is on', function(){
     it('has max temp of 25', function () {
       for(var temp = thermostat.DEFAULT_TEMP; temp <= thermostat.maxTemp; temp++){

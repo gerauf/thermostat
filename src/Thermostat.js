@@ -40,6 +40,10 @@ Thermostat.prototype.turnOffPSM = function () {
   this.maxTemp = 32;
 };
 
+Thermostat.prototype.psmToggle = function () {
+  this.isPSMOn() ? this.turnOffPSM() : this.turnOnPSM();
+};
+
 Thermostat.prototype.getMode = function () {
   if(this._temperature > 25) { return 'High' };
   if(this._temperature < 18) { return 'Low' };
