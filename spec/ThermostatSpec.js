@@ -22,10 +22,9 @@ describe('Thermostat', function(){
   });
 
   it('should have a minimum temperature of 10', function() {
-    for(var temp = thermostat.DEFAULT_TEMP; temp > thermostat.MIN_TEMP; temp--){
+    for(var temp = thermostat.DEFAULT_TEMP; temp >= thermostat.MIN_TEMP; temp--){
       thermostat.down()
     };
-    thermostat.down();
     expect(thermostat.getTemperature()).toEqual(thermostat.MIN_TEMP);
   });
 
@@ -47,10 +46,9 @@ describe('Thermostat', function(){
 
   describe('When Power Saving Mode is on', function(){
     it('has max temp of 25', function () {
-      for(var temp = thermostat.DEFAULT_TEMP; temp < thermostat.maxTemp; temp++){
+      for(var temp = thermostat.DEFAULT_TEMP; temp <= thermostat.maxTemp; temp++){
         thermostat.up();
       };
-      thermostat.up();
       expect(thermostat.getTemperature()).toEqual(thermostat.maxTemp);
     });
   });
@@ -58,10 +56,9 @@ describe('Thermostat', function(){
   describe('When Power Saving Mode is off', function(){
     it('has max temp of 32', function () {
       thermostat.turnOffPSM();
-      for(var temp = thermostat.DEFAULT_TEMP; temp < thermostat.maxTemp; temp++){
+      for(var temp = thermostat.DEFAULT_TEMP; temp <= thermostat.maxTemp; temp++){
         thermostat.up();
       };
-      thermostat.up();
       expect(thermostat.getTemperature()).toEqual(thermostat.maxTemp);
     });
   });
@@ -72,15 +69,15 @@ describe('Thermostat', function(){
     });
 
     it('should be low mode if temp is below 18', function () {
-      thermostat.down();
-      thermostat.down();
-      thermostat.down();
+      for(var temp = thermostat.DEFAULT_TEMP; temp >= 18; temp--){
+        thermostat.down();
+      };
       expect(thermostat.getMode()).toEqual('Low');
     });
 
     it('should be high mode if temp is above 25', function () {
       thermostat.turnOffPSM();
-      for(var temp = thermostat.DEFAULT_TEMP; temp < 26; temp++){
+      for(var temp = thermostat.DEFAULT_TEMP; temp <= 25; temp++){
         thermostat.up();
       };
       expect(thermostat.getMode()).toEqual('High');
