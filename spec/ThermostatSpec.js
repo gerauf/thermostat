@@ -45,7 +45,46 @@ describe('Thermostat', function(){
     expect(thermostat.isPSMOn()).toBe(false);
   });
 
-  // describe('When Power Saving Mode', function(){
-  //   it('')
-  // });
+  describe('When Power Saving Mode is on', function(){
+    it('has max temp of 25', function () {
+      for(var temp = thermostat.DEFAULT_TEMP; temp < thermostat.maxTemp; temp++){
+        thermostat.up();
+      };
+      thermostat.up();
+      expect(thermostat.getTemperature()).toEqual(thermostat.maxTemp);
+    });
+  });
+
+  describe('When Power Saving Mode is off', function(){
+    it('has max temp of 32', function () {
+      thermostat.turnOffPSM();
+      for(var temp = thermostat.DEFAULT_TEMP; temp < thermostat.maxTemp; temp++){
+        thermostat.up();
+      };
+      thermostat.up();
+      expect(thermostat.getTemperature()).toEqual(thermostat.maxTemp);
+    });
+  });
+
+  describe('Power mode', function() {
+    it('default is medium mode', function() {
+      expect(thermostat.getMode()).toEqual('Medium');
+    });
+
+    it('should be low mode if temp is below 18', function () {
+      thermostat.down();
+      thermostat.down();
+      thermostat.down();
+      expect(thermostat.getMode()).toEqual('Low');
+    });
+
+    it('should be high mode if temp is above 25', function () {
+      thermostat.turnOffPSM();
+      for(var temp = thermostat.DEFAULT_TEMP; temp < 26; temp++){
+        thermostat.up();
+      };
+      expect(thermostat.getMode()).toEqual('High');
+    })
+  });
+
 });
