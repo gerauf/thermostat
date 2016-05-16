@@ -62,6 +62,3 @@ Thermostat.prototype.energyUsage = function() {
   }
   return 'high-usage';
 };
-
-var thing = 'something'
-console.log('really really long string which i want to insert a ' + thing + ' in to')
